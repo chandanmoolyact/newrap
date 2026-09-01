@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "4.0"
+metadata:
+  name: newrap
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: ABAP_COPY
+          url: https://e9233ee0-105b-4c71-893f-d4b6f0ddd36a.abap.us10.hana.ondemand.com/
+          scp: true
+        app:
+          name: ZRAP100_CBT
+          description: RAP CBT Description
+          package: ZRAP100_CBT
+          transport: ''
+        exclude:
+          - /test/
+          - /localService/
